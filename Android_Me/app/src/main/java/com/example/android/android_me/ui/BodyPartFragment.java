@@ -41,7 +41,7 @@ public class BodyPartFragment extends Fragment {
 
         if(mImageList != null) {
             //Set the image resource to display
-            imageView.setImageResource(AndroidImageAssets.getHeads().get(mImageIndex));
+            imageView.setImageResource(mImageList.get(mImageIndex));
         }else{
             Log.d(TAG, "ImageList is null");
         }
