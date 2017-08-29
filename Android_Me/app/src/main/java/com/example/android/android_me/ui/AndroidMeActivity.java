@@ -36,12 +36,30 @@ public class AndroidMeActivity extends AppCompatActivity {
         headFragment.setmImageList(AndroidImageAssets.getHeads());
         headFragment.setmImageIndex(1);
 
+        BodyPartFragment bodyFragment = new BodyPartFragment();
+        bodyFragment.setmImageList(AndroidImageAssets.getBodies());
+        bodyFragment.setmImageIndex(1);
+
+        BodyPartFragment legFragment = new BodyPartFragment();
+        legFragment.setmImageList(AndroidImageAssets.getLegs());
+        legFragment.setmImageIndex(1);
+
         //Use Fragment Manager and transaction to add the fragment to the screen
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         //Fragment Transaction
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
+                .commit();
+
+        //Fragment Transaction
+        fragmentManager.beginTransaction()
+                .add(R.id.body_container, headFragment)
+                .commit();
+
+        //Fragment Transaction
+        fragmentManager.beginTransaction()
+                .add(R.id.legs_container, headFragment)
                 .commit();
     }
 }
