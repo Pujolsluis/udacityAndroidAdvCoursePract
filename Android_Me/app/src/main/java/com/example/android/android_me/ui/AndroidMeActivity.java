@@ -31,27 +31,30 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
-        BodyPartFragment headFragment = new BodyPartFragment();
+        if(savedInstanceState == null) {
 
-        headFragment.setmImageList(AndroidImageAssets.getHeads());
-        headFragment.setmImageIndex(0);
+            BodyPartFragment headFragment = new BodyPartFragment();
 
-        BodyPartFragment bodyFragment = new BodyPartFragment();
-        bodyFragment.setmImageList(AndroidImageAssets.getBodies());
-        bodyFragment.setmImageIndex(0);
+            headFragment.setmImageList(AndroidImageAssets.getHeads());
+            headFragment.setmImageIndex(1);
 
-        BodyPartFragment legFragment = new BodyPartFragment();
-        legFragment.setmImageList(AndroidImageAssets.getLegs());
-        legFragment.setmImageIndex(0);
+            BodyPartFragment bodyFragment = new BodyPartFragment();
+            bodyFragment.setmImageList(AndroidImageAssets.getBodies());
+            bodyFragment.setmImageIndex(1);
 
-        //Use Fragment Manager and transaction to add the fragment to the screen
-        FragmentManager fragmentManager = getSupportFragmentManager();
+            BodyPartFragment legFragment = new BodyPartFragment();
+            legFragment.setmImageList(AndroidImageAssets.getLegs());
+            legFragment.setmImageIndex(1);
 
-        //Fragment Transaction
-        fragmentManager.beginTransaction()
-                .add(R.id.head_container, headFragment)
-                .add(R.id.body_container, bodyFragment)
-                .add(R.id.legs_container, legFragment)
-                .commit();
+            //Use Fragment Manager and transaction to add the fragment to the screen
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            //Fragment Transaction
+            fragmentManager.beginTransaction()
+                    .add(R.id.head_container, headFragment)
+                    .add(R.id.body_container, bodyFragment)
+                    .add(R.id.legs_container, legFragment)
+                    .commit();
+        }
     }
 }

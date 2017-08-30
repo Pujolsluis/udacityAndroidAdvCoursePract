@@ -10,8 +10,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.android.android_me.R;
-import com.example.android.android_me.data.AndroidImageAssets;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,9 +21,11 @@ import java.util.List;
 public class BodyPartFragment extends Fragment {
 
     private static final String TAG = BodyPartFragment.class.getSimpleName();
+    private static final String IMAGE_LIST = "ImageList";
+    private static final String IMAGE_INDEX = "ImageIndex";
     private List<Integer> mImageList;
     private int mImageIndex;
-
+    ImageView imageView;
     //Mandatory constructor to instantiating the fragment
     public BodyPartFragment(){
 
@@ -36,8 +38,13 @@ public class BodyPartFragment extends Fragment {
         //Inflate the Android-Me fragment layout
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
 
+        if( savedInstanceState != null){
+            mImageList = savedInstanceState.getIntegerArrayList(IMAGE_LIST);
+            mImageIndex = savedInstanceState.getInt(IMAGE_INDEX);
+        }
+
         //Get a reference to the imageview in the fragment layout
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
+        imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
 
         if(mImageList != null) {
             //Set the image resource to display
@@ -45,8 +52,32 @@ public class BodyPartFragment extends Fragment {
         }else{
             Log.d(TAG, "ImageList is null");
         }
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(mImageIndex < mImageList.size() - 1){
+                    mImageIndex++;
+                }else {
+                    mImageIndex = 0;
+                }
+                if(mImageList != null) {
+                    //Set the image resource to display
+                    imageView.setImageResource(mImageList.get(mImageIndex));
+                }else{
+                    Log.d(TAG, "ImageList is null");
+                }
+            }
+        });
+
         return rootView;
 
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putIntegerArrayList(IMAGE_LIST, (ArrayList<Integer>) mImageList);
+        outState.putInt(IMAGE_INDEX, mImageIndex);
     }
 
     public List<Integer> getmImageList() {
@@ -64,4 +95,5 @@ public class BodyPartFragment extends Fragment {
     public void setmImageIndex(int mImageIndex) {
         this.mImageIndex = mImageIndex;
     }
+
 }
