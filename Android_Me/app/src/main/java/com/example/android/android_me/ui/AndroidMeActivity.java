@@ -50,17 +50,8 @@ public class AndroidMeActivity extends AppCompatActivity {
         //Fragment Transaction
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
-                .commit();
-
-        //Fragment Transaction
-        fragmentManager.beginTransaction()
                 .add(R.id.body_container, bodyFragment)
-                .commit();
-
-        //Fragment Transaction
-        fragmentManager.beginTransaction()
                 .add(R.id.legs_container, legFragment)
                 .commit();
-        
     }
 }
