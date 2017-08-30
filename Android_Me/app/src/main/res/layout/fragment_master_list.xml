@@ -2,4 +2,13 @@
 <GridView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fragment_master_list_grid_view"
     android:layout_width="match_parent" android:layout_height="match_parent"
+    android:columnWidth="180dp"
+    android:numColumns="3"
+    android:gravity="center"
+    android:stretchMode="columnWidth"
+    android:adjustViewBounds = "true"
+    android:horizontalSpacing="8dp"
+    android:verticalSpacing="8dp"
+    android:padding="16dp"
+
     />
