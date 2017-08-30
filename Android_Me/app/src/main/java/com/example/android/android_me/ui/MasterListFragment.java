@@ -1,5 +1,6 @@
 package com.example.android.android_me.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,8 +18,14 @@ import com.example.android.android_me.data.AndroidImageAssets;
 
 public class MasterListFragment extends Fragment {
 
+    OnImageClickListener mCallback;
+
     public MasterListFragment(){
 
+    }
+
+    public interface OnImageClickListener{
+        void onImageSelected(int position);
     }
 
     @Nullable
@@ -35,5 +42,17 @@ public class MasterListFragment extends Fragment {
 
         return rootView;
 
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try{
+            mCallback = (OnImageClickListener) context;
+        }catch(ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + "must implement OnImageClickListener");
+        }
     }
 }
