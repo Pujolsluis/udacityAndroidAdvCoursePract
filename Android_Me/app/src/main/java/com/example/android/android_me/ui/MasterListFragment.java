@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 
 import com.example.android.android_me.R;
@@ -20,6 +21,7 @@ import com.example.android.android_me.data.AndroidImageAssets;
 public class MasterListFragment extends Fragment {
 
     OnImageClickListener mCallback;
+    OnNextButtonClickListener mCallBackNextButton;
 
     public MasterListFragment(){
 
@@ -27,6 +29,9 @@ public class MasterListFragment extends Fragment {
 
     public interface OnImageClickListener{
         void onImageSelected(int position);
+    }
+    public interface OnNextButtonClickListener{
+        void onNextButtonClicked();
     }
 
     @Nullable
@@ -37,6 +42,9 @@ public class MasterListFragment extends Fragment {
 
         GridView gridView = (GridView) rootView.findViewById(R.id.fragment_master_list_grid_view);
 
+        Button nextButton = (Button) rootView.findViewById(R.id.fragment_master_list_button);
+
+
         MasterListAdapter masterListAdapter = new MasterListAdapter(getContext(), AndroidImageAssets.getAll());
 
         gridView.setAdapter(masterListAdapter);
@@ -44,7 +52,14 @@ public class MasterListFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                    mCallback.onImageSelected(i);
+                mCallback.onImageSelected(i);
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mCallBackNextButton.onNextButtonClicked();
             }
         });
 
@@ -61,6 +76,13 @@ public class MasterListFragment extends Fragment {
         }catch(ClassCastException e){
             throw new ClassCastException(context.toString()
                     + "must implement OnImageClickListener");
+        }
+
+        try{
+            mCallBackNextButton = (OnNextButtonClickListener) context;
+        }catch(ClassCastException e){
+            throw new ClassCastException(context.toString()
+                    + "must implement OnNextButtonClickListener");
         }
     }
 }

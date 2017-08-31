@@ -26,25 +26,33 @@ import com.example.android.android_me.data.AndroidImageAssets;
 // This activity will display a custom Android image composed of three body parts: head, body, and legs
 public class AndroidMeActivity extends AppCompatActivity {
 
+    private int headIndex;
+    private int bodyIndex;
+    private int legIndex;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
+
+        headIndex = (int) getIntent().getExtras().get("headIndex");
+        bodyIndex = (int) getIntent().getExtras().get("bodyIndex");
+        legIndex = (int) getIntent().getExtras().get("legIndex");
 
         if(savedInstanceState == null) {
 
             BodyPartFragment headFragment = new BodyPartFragment();
 
             headFragment.setmImageList(AndroidImageAssets.getHeads());
-            headFragment.setmImageIndex(1);
+            headFragment.setmImageIndex(headIndex);
 
             BodyPartFragment bodyFragment = new BodyPartFragment();
             bodyFragment.setmImageList(AndroidImageAssets.getBodies());
-            bodyFragment.setmImageIndex(1);
+            bodyFragment.setmImageIndex(bodyIndex);
 
             BodyPartFragment legFragment = new BodyPartFragment();
             legFragment.setmImageList(AndroidImageAssets.getLegs());
-            legFragment.setmImageIndex(1);
+            legFragment.setmImageIndex(legIndex);
 
             //Use Fragment Manager and transaction to add the fragment to the screen
             FragmentManager fragmentManager = getSupportFragmentManager();
