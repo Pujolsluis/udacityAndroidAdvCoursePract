@@ -5,22 +5,25 @@
 
     <fragment xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/main_activity_master_list_fragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="1"
         android:name="com.example.android.android_me.ui.MasterListFragment"
         />
 
     <!-- LinearLayout for holding three Android-Me images -->
     <LinearLayout
         android:id="@+id/android_me_linear_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
         android:background="@android:color/white"
         android:orientation="vertical"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:layout_weight="2"
+        android:gravity="center_vertical">
 
         <FrameLayout
             android:id="@+id/head_container"
