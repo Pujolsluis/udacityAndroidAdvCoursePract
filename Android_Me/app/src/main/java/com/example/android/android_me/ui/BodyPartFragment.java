@@ -26,6 +26,7 @@ public class BodyPartFragment extends Fragment {
     private List<Integer> mImageList;
     private int mImageIndex;
     ImageView imageView;
+
     //Mandatory constructor to instantiating the fragment
     public BodyPartFragment(){
 

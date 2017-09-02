@@ -63,6 +63,7 @@ public class MasterListFragment extends Fragment {
             }
         });
 
+
         return rootView;
 
     }
